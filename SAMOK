@@ -1,0 +1,261 @@
+INDEX.HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Dashboard</h2>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#" class="tab-link" data-tab="reports">Reports</a></li>
+                    <li><a href="#" class="tab-link" data-tab="accounts">Accounts</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+
+        <div class="main-content">
+            <!-- Reports Section -->
+            <section id="reports" class="tab-content">
+                <div class="section-header">
+                    <h2>Reports</h2>
+                </div>
+                
+                <div class="report-content">
+                   
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>Report Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Monthly Sales Report</td>
+                                <td>Completed</td>
+                            </tr>
+                            <tr>
+                                <td>Product Feedback</td>
+                                <td>In Progress</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Accounts Section -->
+            <section id="accounts" class="tab-content">
+                <div class="section-header">
+                    <h2>Accounts</h2>
+                </div>
+                <div class="account-stats">
+                    <div class="account-item">
+                        <h3>Users</h3>
+                        <p>120</p>
+                    </div>
+                    <div class="account-item">
+                        <h3>Temp Users</h3>
+                        <p>50</p>
+                    </div>
+                    <div class="account-item">
+                        <h3>Total Users</h3>
+                        <p>170</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+STYLES.CSS
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #FFCCBC; 
+    padding: 20px;
+    color: #2c3e50;
+    height: 100vh;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar h2 {
+    font-size: 28px;
+    color: #d34d39; 
+}
+
+.nav ul {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.nav ul li {
+    padding: 15px;
+    text-align: center;
+}
+
+.nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.nav ul li a:hover {
+    background-color: #FFB6A0; 
+    border-radius: 5px;
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    background-color: white;
+}
+
+.section-header {
+    border-bottom: 2px solid #FFB6A0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #d34d39; 
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.report-table th, .report-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.report-table th {
+    background-color: #FFEBE1;
+    color: black;
+    font-size: 18px;
+}
+
+.report-table td {
+    font-size: 16px;
+    color: #555;
+}
+
+.report-table tr:hover {
+    background-color: #FFB6A0;
+}
+
+
+.account-item {
+    background-color: #FFEBE1;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.account-item:hover {
+    background-color: #FFB6A0; 
+}
+
+.account-item h3 {
+    color: #D07B6E;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.account-item p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF6347;
+}
+
+
+.account-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    height: 100%;  
+    max-height: 500px; 
+    overflow-y: auto; 
+}
+
+
+SCRIPT.JS
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Get all the tab links and content sections
+    const tabLinks = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    // Function to hide all content sections
+    function hideAllTabs() {
+        tabContents.forEach(content => {
+            content.style.display = 'none';
+        });
+    }
+
+    // Function to show the selected tab content
+    function showTab(tabId) {
+        hideAllTabs();
+        const selectedTab = document.getElementById(tabId);
+        if (selectedTab) {
+            selectedTab.style.display = 'block';
+        }
+    }
+
+    // Add click event to each tab link
+    tabLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const tabId = link.getAttribute('data-tab');
+            showTab(tabId);
+        });
+    });
+
+    // Show the first tab by default
+    showTab('reports');
+});
+
